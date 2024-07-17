@@ -20,3 +20,54 @@ img{
     width: 100px;
     height: 100px;
 }
+
+.details_btn {
+    text-align: center;
+    width: 100px;
+    height: 25px;
+    border: 1px solid rgba(128, 128, 128, 0.8);
+    border-radius: 12px;
+    padding-top: 5px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+    background: rgba(255, 255, 255, 0.71);
+}
+
+@media (max-width: 1500px) {
+    .father_container{
+        width: 25%;
+    }
+    body{
+        font-size: 12px;
+    }
+    .content_container{
+        height: 420px;
+    }
+}
+@media (max-width: 1300px) {
+    .father_container{
+        width: 33%;
+    }
+    .content_container{
+        height: 350px;
+    }
+
+}
+@media (max-width: 950px) {
+    .father_container{
+        width: 50%;
+    }
+    .content_container{
+        height: 300px;
+    }
+}
+@media (max-width: 650px) {
+    .father_container{
+        width: 100%;
+    }
+    .content_container{
+        height: 280px;
+        font-size: 10px;
+    }
+}

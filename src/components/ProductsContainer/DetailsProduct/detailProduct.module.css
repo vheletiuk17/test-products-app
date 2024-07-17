@@ -1,0 +1,52 @@
+.father{
+    width: 60%;
+    height: 700px;
+    border-radius: 12px;
+    border: 1px solid rgba(128, 128, 128, 0.59);
+    position: relative;
+}
+.back_products_btn{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    width: 130px;
+    height: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.67);
+    color: black;
+    text-align: center;
+    padding: 5px;
+    border-radius: 12px;
+}
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.img{
+    width: 400px;
+    height: 400px;
+}
+
+@media (max-width: 800px) {
+    .img{
+        width: 300px;
+        height: 300px;
+    }
+    .father{
+        height: 550px;
+    }
+}
+@media (max-width: 800px) {
+    .img{
+        width: 250px;
+        height: 250px;
+    }
+    .father{
+        height: 550px;
+    }
+}

@@ -8,6 +8,7 @@ interface IState {
     page: number | null;
     selectedCategory: string | null;
     searchTerm: string;
+    details:  IProducts | null
 }
 
 const initialState: IState = {
@@ -15,6 +16,7 @@ const initialState: IState = {
     page: null,
     selectedCategory: null,
     searchTerm: '',
+    details: null
 };
 
 const getAll = createAsyncThunk<IProductsP, { page: number }>(
@@ -29,6 +31,18 @@ const getAll = createAsyncThunk<IProductsP, { page: number }>(
         }
     }
 );
+const getById = createAsyncThunk<IProducts, {id:number}>(
+    'productSlice/getById',
+        async ({id}, {rejectWithValue}) => {
+            try {
+                const {data} = await productsService.getById(id)
+                return data
+            }catch (e){
+                const err = e as AxiosError
+                return rejectWithValue(err.response?.data)
+            }
+        }
+)
 
 const productSlice = createSlice({
     name: 'productSlice',
@@ -50,6 +64,9 @@ const productSlice = createSlice({
                 state.page = action.payload.page;
                 state.products = action.payload.products;
             })
+            .addCase(getById.fulfilled, (state, action) =>{
+                state.details =action.payload
+            })
 });
 
 
@@ -57,7 +74,8 @@ const {reducer: productReducer, actions} = productSlice;
 
 const productActions = {
     ...actions,
-    getAll
+    getAll,
+    getById
 }
 
 export {productReducer, productActions};

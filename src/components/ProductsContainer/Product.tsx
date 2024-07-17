@@ -2,14 +2,14 @@ import React, {FC, useState} from 'react';
 import {IProducts} from '../../interface/interfaceProducts';
 import css from './product.module.css'
 import {NavLink} from "react-router-dom";
-import {DetailsPage} from "../../page/DetailsPage";
+
 
 interface IProps {
     item: IProducts;
 }
 
 const Product: FC<IProps> = ({item}) => {
-    const { title, images, price, category} = item;
+    const {id, title, images, price, category} = item;
 
      const [searchTerm] = useState<string>('');
 
@@ -26,7 +26,8 @@ const Product: FC<IProps> = ({item}) => {
                 <p>Price: ${price}</p>
                 <p>{category}</p>
                 <img src={images} alt={title}/>
-                <NavLink to={'/details'}>Details</NavLink>
+                <NavLink className={css.details_btn} to={`/details/${id}`}>Details</NavLink>
+
             </div>
         </div>
     );

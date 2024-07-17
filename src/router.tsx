@@ -7,7 +7,7 @@ const router = createBrowserRouter([
     {path:'', element:<MainLayouts/>, children:[
             {index:true, element:<Navigate to={'products'}/>},
             {path:'products' , element:<ProductsPage/>},
-            {path:'details', element:<DetailsPage/>}
+            {path:`details/:id`, element:<DetailsPage/>}
         ]}
 ])
 
