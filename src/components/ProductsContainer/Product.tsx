@@ -11,11 +11,10 @@ interface IProps {
 const Product: FC<IProps> = ({item}) => {
     const {id, title, images, price, category} = item;
 
-     const [searchTerm] = useState<string>('');
+    const [searchTerm] = useState<string>('');
 
-    // Фільтруємо товари за пошуковим терміном
     if (searchTerm && !title.toLowerCase().includes(searchTerm.toLowerCase())) {
-        return null; // Приховуємо товар, якщо він не відповідає пошуковому терміну
+        return null;
     }
 
 

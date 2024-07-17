@@ -4,8 +4,8 @@ const products = '/products'
 
 
 const urls = {
-    product:products,
-    byId:(id:number):string => `/products/${id}`
+    product: products,
+    byId: (id: number): string => `/products/${id}`
 }
 
 export {

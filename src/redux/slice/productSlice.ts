@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IProducts, IProductsP} from "../../interface/interfaceProducts";
 import {productsService} from "../../service/productsService";
 import {AxiosError} from "axios";
@@ -8,7 +8,7 @@ interface IState {
     page: number | null;
     selectedCategory: string | null;
     searchTerm: string;
-    details:  IProducts | null
+    details: IProducts | null
 }
 
 const initialState: IState = {
@@ -19,11 +19,11 @@ const initialState: IState = {
     details: null
 };
 
-const getAll = createAsyncThunk<IProductsP, { page: number }>(
+const getAll = createAsyncThunk<IProductsP>(
     'productSlice/getAll',
-    async ({page}, {rejectWithValue}) => {
+    async (_, {rejectWithValue}) => {
         try {
-            const {data} = await productsService.getAll(page);
+            const {data} = await productsService.getAll();
             return data;
         } catch (e) {
             const err = e as AxiosError;
@@ -31,17 +31,17 @@ const getAll = createAsyncThunk<IProductsP, { page: number }>(
         }
     }
 );
-const getById = createAsyncThunk<IProducts, {id:number}>(
+const getById = createAsyncThunk<IProducts, { id: number }>(
     'productSlice/getById',
-        async ({id}, {rejectWithValue}) => {
-            try {
-                const {data} = await productsService.getById(id)
-                return data
-            }catch (e){
-                const err = e as AxiosError
-                return rejectWithValue(err.response?.data)
-            }
+    async ({id}, {rejectWithValue}) => {
+        try {
+            const {data} = await productsService.getById(id)
+            return data
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
         }
+    }
 )
 
 const productSlice = createSlice({
@@ -61,11 +61,10 @@ const productSlice = createSlice({
     extraReducers: (builder) =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.page = action.payload.page;
                 state.products = action.payload.products;
             })
-            .addCase(getById.fulfilled, (state, action) =>{
-                state.details =action.payload
+            .addCase(getById.fulfilled, (state, action) => {
+                state.details = action.payload
             })
 });
 

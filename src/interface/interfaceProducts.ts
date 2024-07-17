@@ -10,7 +10,4 @@ export interface IProducts{
 export interface IProductsP{
     products: IProducts[],
     page:number | null
-    prev:number | null
-    next:number | null
-    total_pages: number | null
 }
