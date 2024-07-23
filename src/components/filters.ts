@@ -1,7 +1,7 @@
 import {IProducts} from "../interface/interfaceProducts";
 
 export const filterProducts = (products: IProducts[], category: string, searchTerm: string): IProducts[] => {
-    let filteredProducts = [...products];
+    let filteredProducts = [...products];//
 
     if (category) {
         filteredProducts = filteredProducts.filter((item: IProducts) =>
